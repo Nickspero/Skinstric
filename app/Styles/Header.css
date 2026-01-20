@@ -1,0 +1,29 @@
+header{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+.intro{
+  color: #1a1b1c83;  
+  font-size: 14px;
+}
+.title{
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+.title__text{
+    display: flex;
+    gap: 8px;
+}
+button{
+    padding: 8px 16px;
+    color: white;
+    background-color: black;
+    font-size: 10px;
+}
