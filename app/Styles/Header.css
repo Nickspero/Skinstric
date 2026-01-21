@@ -7,23 +7,24 @@ header{
     justify-content: space-between;
     padding: 12px;
 }
-.intro{
+.header__tag{
   color: #1a1b1c83;  
   font-size: 14px;
 }
-.title{
+.header__title{
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    color: black;
+    color: #1a1b1c;
 }
-.title__text{
+.header__titles{
     display: flex;
     gap: 8px;
 }
-button{
+.header__btn{
     padding: 8px 16px;
     color: white;
-    background-color: black;
+    background-color: #1a1b1c;
     font-size: 10px;
+    font-weight: 600;
 }

@@ -1,3 +1,7 @@
+.home{
+  height: 100%;
+  width: 100%;
+}
 .home__content {
   display: flex;
   justify-content: center;
@@ -5,12 +9,54 @@
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
-.home__title {
+.title {
   font-size: 100px;
-  text-align: center;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 680px;
+  line-height: 120px;
+  letter-spacing: -7%;
+  color: #1a1b1c;
+  display: flex;
+  flex-direction: column;
+  transition: all .5s ease;
+
+  span{
+    margin: 0px 120px;
+    transition: all .5s ease;
+  }
+
+}
+.title__left{
+align-items: flex-start;
+transform: translateX(-300px);
+
+span{
+  margin: 0px;
+}
+
+}
+.title__right{
+align-items: flex-end;
+transform: translateX(300px);
+
+span{
+  margin: 0px 0px 0px 120px;
+}
+
+}
+.title__wrapper{
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  transition: justify-content 0.3s ease;
+}
+.title__wrapper--left{
+  justify-content: flex-start;
+}
+.title__wrapper--right{
+  justify-content: flex-end;
 }
 .left,
 .right {
@@ -18,6 +64,9 @@
   align-items: center;
   gap: 12px;
   position: absolute;
+  font-size: 14px;
+  opacity: 1;
+  transition: all .5s ease;
 }
 .left{
     left: 80px;
@@ -25,13 +74,18 @@
 .right{
     right: 80px;
 }
+.inactive{
+  opacity: 0;
+}
 .arrow {
   transition: transform 0.3s ease;
+  z-index: 100;
 }
 .arrow:hover {
+  cursor: pointer;
   transform: scale(1.2);
 }
-.home__desc {
+.home__description {
   position: absolute;
   left: 32px;
   bottom: 32px;
@@ -47,8 +101,8 @@
   transform: rotate(45deg);
 }
 .dotted__left {
-  left: -450px;
+  left: -500px;
 }
 .dotted__right {
-  right: -450px;
+  right: -500px;
 }
