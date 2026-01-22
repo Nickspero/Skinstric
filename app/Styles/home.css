@@ -1,63 +1,59 @@
-.home{
-  height: 100%;
-  width: 100%;
-}
+
 .home__content {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
   overflow: hidden;
 }
+
 .title {
   font-size: 100px;
-  font-weight: 400;
-  max-width: 680px;
-  line-height: 120px;
-  letter-spacing: -7%;
-  color: #1a1b1c;
+  line-height: 100px;
+  letter-spacing: -7px;
   display: flex;
   flex-direction: column;
   transition: all .5s ease;
 
   span{
     margin: 0px 120px;
-    transition: all .5s ease;
+    transition: margin .5s ease;
   }
-
 }
+
 .title__left{
-align-items: flex-start;
 transform: translateX(-300px);
 
 span{
   margin: 0px;
 }
-
 }
+
 .title__right{
-align-items: flex-end;
 transform: translateX(300px);
 
 span{
-  margin: 0px 0px 0px 120px;
+  margin-left: 220px
+}
 }
 
-}
 .title__wrapper{
   width: 75%;
   display: flex;
   justify-content: center;
   transition: justify-content 0.3s ease;
 }
+
 .title__wrapper--left{
   justify-content: flex-start;
 }
+
 .title__wrapper--right{
   justify-content: flex-end;
 }
+
 .left,
 .right {
   display: flex;
@@ -68,31 +64,27 @@ span{
   opacity: 1;
   transition: all .5s ease;
 }
+
 .left{
     left: 80px;
 }
+
 .right{
     right: 80px;
 }
+
 .inactive{
   opacity: 0;
 }
-.arrow {
-  transition: transform 0.3s ease;
-  z-index: 100;
-}
-.arrow:hover {
-  cursor: pointer;
-  transform: scale(1.2);
-}
+
 .home__description {
   position: absolute;
   left: 32px;
   bottom: 32px;
   max-width: 320px;
-  justify-self: start;
   font-size: 14px;
 }
+
 .dotted {
   border: 2px dotted #a0a4ab;
   position: absolute;
@@ -100,9 +92,33 @@ span{
   height: 602px;
   transform: rotate(45deg);
 }
+
 .dotted__left {
   left: -500px;
 }
+
 .dotted__right {
   right: -500px;
+}
+
+.right__text, 
+.left__text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  cursor: pointer;
+  text-decoration: none;
+  color: #1a1b1c;
+
+  img{
+    transition: transform 0.3s ease;
+  }
+}
+
+.right__text:hover, .left__text:hover{
+  img{
+    transform: scale(1.2);
+  }
 }

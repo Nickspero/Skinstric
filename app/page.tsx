@@ -9,44 +9,41 @@ export default function Home() {
   const [rightHover, setRightHover] = useState(false);
 
   return (
-    <div className="home">
+    <div className="wrapper">
       <Header />
       <div className="home__content">
-        <div className={`left ${rightHover? "inactive" : ""}`}>
+        <div className={`left ${rightHover ? "inactive" : ""}`}>
           <div className="dotted dotted__left"></div>
-          <img
-            className="arrow"
+          <div
+            className="left__text"
             onMouseEnter={() => setLeftHover(true)}
             onMouseLeave={() => setLeftHover(false)}
-            src="/left-arrow.svg"
-            alt=""
-          />
-          <p>DISCOVER A.I.</p>
+          >
+            <img src="/left-arrow.svg" alt="" />
+            <p>DISCOVER A.I.</p>
+          </div>
         </div>
-        
-          <div
-            className=
-            {`title 
+
+        <div
+          className={`title 
         ${rightHover ? "title__left" : ""} 
         ${leftHover ? "title__right" : ""}`}
-          >
-            <p>Sophisticated</p> 
-            <span>skincare</span>
-          </div>
-        
-        <div className={`right ${leftHover? "inactive" : ""}`}>
+        >
+          <p>Sophisticated</p>
+          <span>skincare</span>
+        </div>
+
+        <div className={`right ${leftHover ? "inactive" : ""}`}>
           <div className="dotted dotted__right"></div>
-          <div className="right__wrapper">
-          <p>TAKE TEST</p>
-          <img
-            className="arrow"
+          <Link
+            href={"/testing"}
+            className="right__text"
             onMouseEnter={() => setRightHover(true)}
             onMouseLeave={() => setRightHover(false)}
-            src="/right-arrow.svg"
-            alt=""
-          />
-          </div>
-          
+          >
+            <p>TAKE TEST</p>
+            <img src="/right-arrow.svg" alt="" />
+          </Link>
         </div>
         <p className="home__description">
           SKINSTRIC DEVELOPED AN A.I. THAT CREATES HIGHLY PERSONALIZED ROUTINE

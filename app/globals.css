@@ -44,3 +44,9 @@ body {
   font-family: "Roobert";
   color: #1a1b1c;
 }
+
+.wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
