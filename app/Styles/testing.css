@@ -22,22 +22,47 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
+    position: relative;
 }
 
 .testing__input{
-    width: 500px;
+    width: 450px;
     height: 65px;
     font-weight: 400;
-    text-decoration: none;
     font-size: 60px;
-    border: none;
+    text-align: center;
+    border: transparent;
+    border-bottom: 1px solid black;
+    font-family: inherit;
+    letter-spacing: -4px;
+    padding-bottom: 8px;
+    background: transparent;
+}
+
+.city{
+    width: 520px;
+}
+
+form{
+    z-index: 100;
+}
+
+.testing__input:focus {
+  outline: none;
+  border-bottom: 1px solid black;
 }
 
 .input__tag{
     color: grey;
 }
 
-.back__arrow{
+.bottom__arrows{
+    display: flex;
+    justify-content: space-between;
+}
+
+.back__arrow, 
+.forward__arrow{
     display: flex;
     gap: 12px;
     align-items: center;
@@ -51,8 +76,49 @@
 
 }
 
-.back__arrow:hover{
+.back__arrow:hover, 
+.forward__arrow:hover{
     img{
         transform: scale(1.2);
     }
+}
+
+.success__message{
+    text-align: center;
+}
+.bold{
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+.proceed{
+    color: grey;
+}
+
+.dotted__small{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    opacity: 1;
+    animation: rotate 85s linear infinite;
+}
+.dotted__med{
+    position: absolute;
+    width: 525px;
+    height: 525px;
+    opacity: .6;
+    animation: rotate 70s linear infinite ;
+}
+.dotted__large{
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    opacity: .3;
+    animation: rotate 50s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+    
 }

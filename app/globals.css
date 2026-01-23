@@ -50,3 +50,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.dotted {
+  border: 2.7px dotted #a0a4ab;
+  position: absolute;
+  width: 602px;
+  height: 602px;
+  transform: rotate(45deg);
+}

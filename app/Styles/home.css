@@ -85,14 +85,6 @@ span{
   font-size: 14px;
 }
 
-.dotted {
-  border: 2px dotted #a0a4ab;
-  position: absolute;
-  width: 602px;
-  height: 602px;
-  transform: rotate(45deg);
-}
-
 .dotted__left {
   left: -500px;
 }
