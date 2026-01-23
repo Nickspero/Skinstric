@@ -11,12 +11,24 @@ const testingPage = () => {
   const [step, setStep] = useState(1);
   const [apiFetched, setApiFetched] = useState(false)
 
-  const fetchData = async () => {
-    const res = await fetch("https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne")
-    const data = await res.json()
-    console.log(data)
-    setApiFetched(true)
-  }
+ const fetchData = async () => {
+    const res = await fetch(
+      "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          location: city,
+        }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    setApiFetched(true);
+  };
 
   return (
     <div className="wrapper">
