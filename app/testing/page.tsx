@@ -33,7 +33,7 @@ const testingPage = () => {
   return (
     <div className="wrapper">
       <Header />
-      <div className="testing__content">
+      <div className="row">
         <p className="top__text">TO START ANALYSIS</p>
         <div className="testing__main">
           {submit === false? 
@@ -73,7 +73,7 @@ const testingPage = () => {
                   onChange={(e) => {
                     setCity(e.target.value);
                   }}
-                /> }
+                autoFocus/> }
             </form>
           </div> :
           <>
@@ -81,7 +81,7 @@ const testingPage = () => {
             <p className="bold">Thank you!</p>
             <p className="proceed">Proceed for the next step</p>
           </div>: 
-          <p>loading...</p> 
+          <p className="loading">Processing Submission...</p> 
            }
           </> 
            }

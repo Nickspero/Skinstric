@@ -1,12 +1,3 @@
-.testing__content{
-    height: 100%;
-    padding: 24px;
-}
-
-.top__text{
-    font-size: 12px;
-    font-weight: 600;
-}
 
 .testing__main{
     height: 100%;
@@ -56,33 +47,6 @@ form{
     color: grey;
 }
 
-.bottom__arrows{
-    display: flex;
-    justify-content: space-between;
-}
-
-.back__arrow, 
-.forward__arrow{
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    text-decoration: none;
-    color: #1a1b1c;
-    padding: 24px;
-
-    img{
-        transition: all .3s ease;
-    }
-
-}
-
-.back__arrow:hover, 
-.forward__arrow:hover{
-    img{
-        transform: scale(1.2);
-    }
-}
-
 .success__message{
     text-align: center;
 }
@@ -93,6 +57,10 @@ form{
 }
 .proceed{
     color: grey;
+}
+
+.loading{
+    font-size: 24px;
 }
 
 .dotted__small{
