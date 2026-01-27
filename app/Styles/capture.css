@@ -13,7 +13,6 @@
         font-weight: bold;
 
     }
-
 }
 
 .camera__display{
@@ -36,7 +35,7 @@ video {
     padding: 24px;
 }
 
-.back__arrow{
+.invert{
     color: white;
     width: max-content;
 

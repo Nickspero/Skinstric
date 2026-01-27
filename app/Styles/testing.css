@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .input__wrapper{
@@ -50,11 +51,13 @@ form{
 .success__message{
     text-align: center;
 }
+
 .bold{
     font-weight: 300;
     font-size: 24px;
     margin-bottom: 12px;
 }
+
 .proceed{
     color: grey;
 }
@@ -63,30 +66,15 @@ form{
     font-size: 24px;
 }
 
-.dotted__small{
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    opacity: 1;
-    animation: rotate 85s linear infinite;
+.box__sm{
+width: 500px;
+height: 500px;
 }
-.dotted__med{
-    position: absolute;
-    width: 525px;
-    height: 525px;
-    opacity: .6;
-    animation: rotate 70s linear infinite ;
+.box__md{
+width: 525px;
+height: 525px;
 }
-.dotted__large{
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    opacity: .3;
-    animation: rotate 50s linear infinite;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-    
+.box__lg{
+width: 550px;
+height: 550px;
 }

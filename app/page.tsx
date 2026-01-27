@@ -3,24 +3,27 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import "./Styles/home.css";
 import Link from "next/link";
+import Arrow from "./Components/Arrow";
 
 export default function Home() {
   const [leftHover, setLeftHover] = useState(false);
   const [rightHover, setRightHover] = useState(false);
 
   return (
-    <div className="wrapper">
+    <div className="container">
       <Header />
       <div className="home__content">
-        <div className={`left ${rightHover ? "inactive" : ""}`}>
+        <div className={`left__container ${rightHover ? "inactive" : ""}`}>
           <div className="dotted dotted__left"></div>
           <div
-            className="left__text"
             onMouseEnter={() => setLeftHover(true)}
             onMouseLeave={() => setLeftHover(false)}
           >
-            <img src="/left-arrow.svg" alt="" />
-            <p>DISCOVER A.I.</p>
+            <Arrow
+              className="back__arrow"
+              svg="left-arrow.svg"
+              arrowText="DISCOVER A.I."
+            />
           </div>
         </div>
 
@@ -33,16 +36,19 @@ export default function Home() {
           <span>skincare</span>
         </div>
 
-        <div className={`right ${leftHover ? "inactive" : ""}`}>
+        <div className={`right__container ${leftHover ? "inactive" : ""}`}>
           <div className="dotted dotted__right"></div>
           <Link
             href={"/testing"}
-            className="right__text"
+            className="no__underline"
             onMouseEnter={() => setRightHover(true)}
             onMouseLeave={() => setRightHover(false)}
           >
-            <p>TAKE TEST</p>
-            <img src="/right-arrow.svg" alt="" />
+            <Arrow
+              className="forward__arrow"
+              svg="/right-arrow.svg"
+              arrowText="TAKE TEST"
+            />
           </Link>
         </div>
         <p className="home__description">

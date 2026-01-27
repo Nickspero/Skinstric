@@ -16,7 +16,7 @@ const cameraPage = () => {
   }, [router])
 
   return (
-    <div className="wrapper">
+    <div className="container">
       <Header/>
       <div className="row">
         <p className="top__text">TO START ANALYSIS</p>

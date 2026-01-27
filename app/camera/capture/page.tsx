@@ -6,48 +6,49 @@ import Header from "@/app/Components/Header";
 import { useRouter } from "next/navigation";
 
 const capturePage = () => {
-    const router = useRouter()
+  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [cameraError, setCameraError] = useState(false);
   const [picTaken, setPicTaken] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
 
   useEffect(() => {
-  navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then((stream) => {
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then((stream) => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      })
+      .catch(() => setCameraError(true));
+
+    return () => {
+      if (videoRef.current?.srcObject) {
+        const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+        tracks.forEach((track) => track.stop());
       }
-    })
-    .catch(() => setCameraError(true));
+    };
+  }, [picTaken]);
 
-  return () => {
-    if (videoRef.current?.srcObject) {
-      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-      tracks.forEach(track => track.stop());
-    }
-  };
-}, [picTaken]);
-
-
-const fetchApi = async () => {
-    const res = await fetch("https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
+  const fetchApi = async () => {
+    const res = await fetch(
+      "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          image : photo
+          image: photo,
         }),
-      })
-    const data = await res.json()
+      },
+    );
+    const data = await res.json();
 
     if (data.success) {
-      router.push("/select")
+      router.push("/select");
     }
-  }
+  };
 
   const takePhoto = () => {
     if (!videoRef.current) return;
@@ -59,20 +60,20 @@ const fetchApi = async () => {
     if (!ctx) return;
 
     ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    setPhoto(canvas.toDataURL("image/png")); 
+    setPhoto(canvas.toDataURL("image/png"));
   };
 
   const resetPhoto = () => {
-  setPhoto(null);
-  setPicTaken(false);
-};
+    setPhoto(null);
+    setPicTaken(false);
+  };
   return (
     <>
       {cameraError ? (
         <div className="camera__error">
           <p>CAMERA ACCESS ERROR</p>
           <p>PLEASE TRY AGAIN</p>
-          <Link href={"/result"} className="back__arrow">
+          <Link href={"/result"} className="back__arrow no__underline">
             <img src="/left-arrow.svg" />
             <p>BACK</p>
           </Link>
@@ -93,7 +94,9 @@ const fetchApi = async () => {
                   <p className="preview__tag">Preview</p>
                   <div className="preview__btns">
                     <button onClick={resetPhoto}>Retake</button>
-                    <button onClick={fetchApi} className="use__btn">Use This Photo</button>
+                    <button onClick={fetchApi} className="use__btn">
+                      Use This Photo
+                    </button>
                   </div>
                 </div>
               </>
@@ -129,7 +132,7 @@ const fetchApi = async () => {
                 </div>
               </>
             )}
-            <Link href={"/result"} className="back__arrow">
+            <Link href={"/result"} className="back__arrow no__underline invert">
               <img src="/left-arrow.svg" />
               <p>BACK</p>
             </Link>

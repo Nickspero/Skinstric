@@ -1,0 +1,55 @@
+.top__text--main{
+    font-size: 16px;
+}
+.top__text--sub{
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 8px;
+}
+
+.select__main{
+    padding: 24px;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select__quarter{
+    width: 150px;
+    height: 150px;
+    background-color: #E1E1E2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select__quarter:hover{
+    background-color: rgb(197, 197, 197) ;
+}
+
+.no__cursor{
+  cursor: not-allowed;
+  background-color: #F3F3F4;
+}
+
+.half{
+    display: flex;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.quarter__title{
+    text-align: center;
+    transform: rotate(-45deg);
+}
+
+.select__quadrant{
+    transform: rotate(45deg); 
+    background-color: white;
+    z-index: 100; 
+}
+
+.box{
+    position: absolute;
+}
