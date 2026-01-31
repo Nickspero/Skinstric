@@ -3,7 +3,6 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import "./Styles/home.css";
 import Link from "next/link";
-import Arrow from "./Components/Arrow";
 
 export default function Home() {
   const [leftHover, setLeftHover] = useState(false);
@@ -19,11 +18,10 @@ export default function Home() {
             onMouseEnter={() => setLeftHover(true)}
             onMouseLeave={() => setLeftHover(false)}
           >
-            <Arrow
-              className="back__arrow"
-              svg="left-arrow.svg"
-              arrowText="DISCOVER A.I."
-            />
+            <div className="arrow">
+            <img src="/left-arrow.svg" />
+            <p>DISCOVER A.I.</p>
+          </div>
           </div>
         </div>
 
@@ -44,11 +42,10 @@ export default function Home() {
             onMouseEnter={() => setRightHover(true)}
             onMouseLeave={() => setRightHover(false)}
           >
-            <Arrow
-              className="forward__arrow"
-              svg="/right-arrow.svg"
-              arrowText="TAKE TEST"
-            />
+            <div className="arrow">
+            <p>TAKE TEST</p>
+            <img src="/right-arrow.svg" />
+          </div>
           </Link>
         </div>
         <p className="home__description">

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Header from "../Components/Header";
 import "../Styles/testing.css";
 import { useState } from "react";
-import Arrow from "../Components/Arrow";
 
 const testingPage = () => {
   const [submit, setSubmit] = useState(false);
@@ -99,19 +98,17 @@ const testingPage = () => {
       </div>
       <div className="arrow__wrapper">
         <Link href={"/"} className="no__underline">
-          <Arrow
-            className="back__arrow"
-            svg="left-arrow.svg"
-            arrowText="BACK"
-          />
+          <div className="arrow">
+            <img src="/left-arrow.svg" />
+            <p>BACK</p>
+          </div>
         </Link>
         {apiFetched && (
           <Link href={"/result"} className="no__underline">
-            <Arrow
-            className="forward__arrow"
-            svg="right-arrow.svg"
-            arrowText="PROCEED"
-          />
+            <div className="arrow">
+            <p>PROCEED</p>
+            <img src="/right-arrow.svg" />
+          </div>
           </Link>
         )}
       </div>

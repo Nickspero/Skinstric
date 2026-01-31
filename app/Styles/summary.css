@@ -1,0 +1,88 @@
+.summary__header{
+    font-size: 72px;
+    font-weight: 400;
+}
+.top__text{
+    font-size: 16px;
+}
+.top__text--sub{
+    font-size: 14px;
+}
+.disclaimer{
+    color: #a0a4ab;
+    font-weight: 300;
+}
+
+.summary__main{
+    margin: 64px 24px 0px 24px;
+    display: flex;
+    gap: 16px;
+}
+
+.summary{
+    background-color: #F3F3F4;
+    border-top: 1px solid black ;
+    transition: all .3s ease;
+}
+
+.middle{
+    flex: 1;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 16px;
+}
+
+.middle__header{
+    width: 100%;
+    font-size: 40px;
+}
+
+.category{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 120px;
+}
+.category:hover{
+    background-color: #E1E1E2;
+}
+
+.right-side{
+    width: 300px;
+}
+
+.right__headers{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    padding: 16px;
+}
+
+.stat{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    cursor: pointer;
+}
+.stat:hover{
+    background-color: #E1E1E2;
+}
+
+.percent__wrapper{
+    display: flex;
+    gap: 8px;
+}
+
+.active{
+    background-color: #1a1b1c;
+    color: white;
+}
+.active:hover{
+    background-color: #1a1b1c;
+}

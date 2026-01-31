@@ -87,10 +87,10 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 12px;
+  align-items: center;
 }
 
-.back__arrow, 
-.forward__arrow{
+.arrow{
     display: flex;
     gap: 12px;
     align-items: center;
@@ -103,8 +103,7 @@ body {
     }
 }
 
-.back__arrow:hover, 
-.forward__arrow:hover{
+.arrow:hover{
     img{
         transform: scale(1.2);
     }

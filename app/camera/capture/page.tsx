@@ -4,13 +4,16 @@ import "../../Styles/capture.css";
 import { useEffect, useRef, useState } from "react";
 import Header from "@/app/Components/Header";
 import { useRouter } from "next/navigation";
+import { useResultStore } from "@/app/store/useResultsStore";
 
 const capturePage = () => {
   const router = useRouter();
+  const setResult = useResultStore((state: any) => state.setResult);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [cameraError, setCameraError] = useState(false);
   const [picTaken, setPicTaken] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     navigator.mediaDevices
@@ -31,6 +34,7 @@ const capturePage = () => {
   }, [picTaken]);
 
   const fetchApi = async () => {
+    setLoading(true)
     const res = await fetch(
       "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
       {
@@ -46,6 +50,7 @@ const capturePage = () => {
     const data = await res.json();
 
     if (data.success) {
+      setResult(data);
       router.push("/select");
     }
   };
@@ -67,13 +72,14 @@ const capturePage = () => {
     setPhoto(null);
     setPicTaken(false);
   };
+
   return (
     <>
       {cameraError ? (
         <div className="camera__error">
           <p>CAMERA ACCESS ERROR</p>
           <p>PLEASE TRY AGAIN</p>
-          <Link href={"/result"} className="back__arrow no__underline">
+          <Link href={"/result"} className="arrow no__underline">
             <img src="/left-arrow.svg" />
             <p>BACK</p>
           </Link>
@@ -87,7 +93,7 @@ const capturePage = () => {
             <video ref={videoRef} autoPlay />
           )}
           <div className="camera__overlay">
-            {picTaken ? (
+            {picTaken && !loading && (
               <>
                 <div className="preview">
                   <p className="great">GREAT SHOT!</p>
@@ -100,7 +106,15 @@ const capturePage = () => {
                   </div>
                 </div>
               </>
-            ) : (
+            )}
+            {loading && (
+              <div className="preview">
+                <div className="analyzing">
+                  <p>Analyzing Image...</p>
+                </div>
+              </div>
+            )}
+            {!picTaken && !loading && (
               <>
                 <figure className="take-picture">
                   <p>TAKE PICTURE</p>
@@ -132,7 +146,7 @@ const capturePage = () => {
                 </div>
               </>
             )}
-            <Link href={"/result"} className="back__arrow no__underline invert">
+            <Link href={"/result"} className="arrow no__underline invert">
               <img src="/left-arrow.svg" />
               <p>BACK</p>
             </Link>

@@ -4,8 +4,10 @@ import Header from "../Components/Header";
 import "../Styles/result.css";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useResultStore } from "../store/useResultsStore";
 
 const resultPage = () => {
+  const setResult = useResultStore((state: any) => state.setResult)
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [image, setImage] = useState<string | null>(null);
@@ -14,7 +16,6 @@ const resultPage = () => {
   const handleChange = (e: any) => {
     const file = e.target.files[0];
     if (!file) return;
-
     setImage(URL.createObjectURL(file));
   };
 
@@ -40,6 +41,7 @@ const resultPage = () => {
     const data = await res.json();
 
      if (data.success) {
+      setResult(data);
       router.push("/select");
     } 
   };
@@ -117,7 +119,7 @@ const resultPage = () => {
         )}
       </div>
       <div className="arrow__wrapper">
-        <Link href={"/testing"} className="back__arrow no__underline">
+        <Link href={"/testing"} className="arrow no__underline">
           <img src="/left-arrow.svg" />
           <p>BACK</p>
         </Link>
