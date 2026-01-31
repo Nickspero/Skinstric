@@ -7,8 +7,17 @@ import { useState } from "react";
 import PercentRing from "../Components/PercentRing";
 
 const summaryPage = () => {
+  const result = useResultStore((state: any) => state.result);
+  const ages: Record<string, number> = result.data.age;
+  const sex: Record<string, number> = result.data.gender;
+  const race: Record<string, number> = result.data.race;
+
   const capitalize = (word: string) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
+  const percentRound = (decimal: number) => {
+    return Math.round(decimal * 100);
   };
 
   const findMax = (obj: Record<string, number>) => {
@@ -20,24 +29,41 @@ const summaryPage = () => {
         maxKey = key;
       }
     }
-    return capitalize(maxKey);
+    return maxKey;
   };
 
-  const result = useResultStore((state: any) => state.result);
-  const ages: Record<string, number> = result.data.age;
-  const sex: Record<string, number> = result.data.gender;
-  const race: Record<string, number> = result.data.race;
+  const raceMax = {
+    key: findMax(race),
+    val: percentRound(race[findMax(race)]),
+  };
+  const ageMax = {
+    key: findMax(ages),
+    val: percentRound(ages[findMax(ages)]),
+  };
+  const sexMax = {
+    key: findMax(sex),
+    val: percentRound(sex[findMax(sex)]),
+  };
+
+  const setCatStates = (catName: string, catValue: number) => {
+    (setActiveStat(catName), setActiveTitle(catName), setPercent(catValue));
+  };
+
+  const setStatStates = (statName: string, statVal: number) => {
+    (setActiveStat(statName),
+      setPercent(percentRound(statVal)),
+      setActiveTitle(capitalize(statName)));
+  };
+
   const [active, setActive] = useState("race");
-  const [activeTitle, setActiveTitle] = useState(findMax(race));
-  const [raceTitle, setRaceTitle] = useState(findMax(race));
-  const [ageTitle, setAgeTitle] = useState(findMax(ages));
-  const [sexTitle, setSexTitle] = useState(findMax(sex));
-  const [activeStat, setActiveStat] = useState("");
-  const [percent, setPercent] = useState(0);
+  const [activeTitle, setActiveTitle] = useState(raceMax.key);
+  const [raceTitle, setRaceTitle] = useState(capitalize(raceMax.key));
+  const [ageTitle, setAgeTitle] = useState(ageMax.key);
+  const [sexTitle, setSexTitle] = useState(capitalize(sexMax.key));
+  const [percent, setPercent] = useState(raceMax.val);
+  const [activeStat, setActiveStat] = useState(raceMax.key);
 
-  const percentRound = (decimal: number) => {
-    return Math.round(decimal * 100);
-  };
+  console.log(ageMax.val);
 
   return (
     <div className="container">
@@ -46,12 +72,13 @@ const summaryPage = () => {
         <div className="top__text">A.I. ANALYSIS</div>
         <h1 className="summary__header">DEMOGRAPHICS</h1>
         <div className="top__text--sub">PREDICTED RACE & AGE</div>
+
         <div className="summary__main">
           <div className="left-side">
             <div
               className={`summary category ${active === "race" && "active"}`}
               onClick={() => {
-                (setActive("race"), setActiveTitle(raceTitle));
+                (setActive("race"), setCatStates(raceMax.key, raceMax.val));
               }}
             >
               <p>{raceTitle}</p>
@@ -60,7 +87,7 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "age" && "active"}`}
               onClick={() => {
-                (setActive("age"), setActiveTitle(ageTitle));
+                (setActive("age"), setCatStates(ageMax.key, ageMax.val));
               }}
             >
               <p>{ageTitle}</p>
@@ -69,17 +96,22 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "sex" && "active"}`}
               onClick={() => {
-                (setActive("sex"), setActiveTitle(sexTitle));
+                (setActive("sex"), setCatStates(sexMax.key, sexMax.val));
               }}
             >
               <p>{sexTitle}</p>
               <p>SEX</p>
             </div>
           </div>
+
           <div className="summary middle">
-            <p className="middle__header">{activeTitle}</p>
+            <p className="middle__header">
+              {capitalize(activeTitle)}
+              {active === "age" && " y.o."}
+            </p>
             <PercentRing percentage={percent} />
           </div>
+
           <div className="summary right-side">
             <div className="right__headers">
               <p>AGE</p>
@@ -93,10 +125,8 @@ const summaryPage = () => {
                       className={`stat ${activeStat === key && "active"}`}
                       key={key}
                       onClick={() => {
-                        (setRaceTitle(capitalize(key)),
-                          setActiveTitle(capitalize(key)),
-                          setActiveStat(key),
-                          setPercent(percentRound(value)));
+                        setStatStates(key, value);
+                        setRaceTitle(capitalize(key));
                       }}
                     >
                       <figure className="percent__wrapper">
@@ -114,6 +144,7 @@ const summaryPage = () => {
                     </div>
                   );
                 })}
+
               {active === "age" &&
                 Object.entries(ages).map(([key, value]) => {
                   return (
@@ -121,10 +152,8 @@ const summaryPage = () => {
                       className={`stat ${activeStat === key && "active"}`}
                       key={key}
                       onClick={() => {
-                        (setAgeTitle(capitalize(key)),
-                          setActiveTitle(capitalize(key)),
-                          setActiveStat(key),
-                          setPercent(percentRound(value)));
+                        setStatStates(key, value);
+                        setAgeTitle(key);
                       }}
                     >
                       <figure className="percent__wrapper">
@@ -142,6 +171,7 @@ const summaryPage = () => {
                     </div>
                   );
                 })}
+
               {active === "sex" &&
                 Object.entries(sex).map(([key, value]) => {
                   return (
@@ -149,10 +179,8 @@ const summaryPage = () => {
                       className={`stat ${activeStat === key && "active"}`}
                       key={key}
                       onClick={() => {
-                        (setSexTitle(capitalize(key)),
-                          setActiveTitle(capitalize(key)),
-                          setActiveStat(key),
-                        setPercent(percentRound(value)));
+                        setStatStates(key, value);
+                        setSexTitle(capitalize(key));
                       }}
                     >
                       <figure className="percent__wrapper">
@@ -174,6 +202,7 @@ const summaryPage = () => {
           </div>
         </div>
       </div>
+
       <div className="arrow__wrapper">
         <Link href={"/select"} className="no__underline">
           <div className="arrow">

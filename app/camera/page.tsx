@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import Header from "../Components/Header"
 import "../Styles/camera.css"
 import { useRouter } from "next/navigation"
+import CameraTips from "../Components/CameraTips"
 
 const cameraPage = () => {
 
@@ -28,14 +29,7 @@ const cameraPage = () => {
              <div className="dotted dotted__small"></div>
           <div className="dotted dotted__med"></div>
           <div className="dotted dotted__large"></div>
-          <div className="bottom__texts">
-            <p className="bottom__text-main">TO GET BETTER RESULTS MAKE SURE TO HAVE</p>
-            <div className="bottom__text-box">
-              <p className="bottom__text"><img src="/Rectangle.svg" alt="" />NEUTRAL EXPRESSION</p>
-              <p className="bottom__text"><img src="/Rectangle.svg" alt="" />FRONTAL POSE</p>
-              <p className="bottom__text"><img src="/Rectangle.svg" alt="" />ADEQUATE LIGHTING</p>
-            </div>
-          </div>
+          <CameraTips/>
         </div>
       </div>
     </div>

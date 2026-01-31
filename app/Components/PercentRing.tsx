@@ -1,32 +1,65 @@
-import "../Styles/PercentRing.css";
 
-const PercentRing = ({ percentage }: any) => {
-  const angle = percentage * 3.6;
+const PercentRing = ({ percentage }: { percentage: number }) => {
+  const SIZE = 384;
+  const STROKE = 8;           
+  const CENTER = SIZE / 2;
+  const RADIUS = CENTER - STROKE / 2;
+  const CIRC = 2 * Math.PI * RADIUS;
+  const OFFSET = CIRC * (1 - percentage / 100);
 
   return (
-    <div className="ring">
-      <div
-        className="mask"
-        style={{transform: `rotate(${percentage <= 50 ? angle : 180}deg)`,}}
-      >
-        <div className="half"></div>
-      </div>
+    <svg width={SIZE} height={SIZE}>
+      <circle
+        cx={CENTER}
+        cy={CENTER}
+        r={RADIUS}
+        stroke="#C1C2C3"
+        strokeWidth={STROKE}
+        fill="none"
+      />
 
-      <div
-        className="mask"
-        style={{transform: `rotate(${percentage > 50 ? angle : {}}deg)`,}}
-      >
-        <div
-          className="half"
-          style={{backgroundColor: `${percentage > 50 ? "black" : "#C1C2C3"}`,}}
-        ></div>
-      </div>
+      <circle
+        cx={CENTER}
+        cy={CENTER}
+        r={RADIUS}
+        stroke="#000000"
+        strokeWidth={STROKE}
+        fill="none"
+        strokeDasharray={CIRC}
+        strokeDashoffset={OFFSET}
+        strokeLinecap="square"
+        style={{
+          transition: "stroke-dashoffset 900ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transform: "rotate(-90deg)",
+          transformOrigin: "50% 50%",
+        }}
+      />
 
-      <div className="overlay">
-        <p className="percentage">{percentage}%</p>
-      </div>
-    </div>
+      
+      <circle
+        cx={CENTER}
+        cy={CENTER}
+        r={RADIUS - 22}
+        fill="#F3F3F4"
+      />
+
+      
+      <text
+        x="50%"
+        y="50%"
+        dominantBaseline="middle"
+        textAnchor="middle"
+        fontSize="32"
+        fontWeight="400"
+        fill="#000"
+      >
+        {percentage}%
+      </text>
+    </svg>
   );
 };
+
+
+
 
 export default PercentRing;

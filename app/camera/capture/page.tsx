@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "@/app/Components/Header";
 import { useRouter } from "next/navigation";
 import { useResultStore } from "@/app/store/useResultsStore";
+import CameraTips from "@/app/Components/CameraTips";
 
 const capturePage = () => {
   const router = useRouter();
@@ -125,25 +126,7 @@ const capturePage = () => {
                     alt=""
                   />
                 </figure>
-                <div className="bottom__texts">
-                  <p className="bottom__text-main">
-                    TO GET BETTER RESULTS MAKE SURE TO HAVE
-                  </p>
-                  <div className="bottom__text-box">
-                    <p className="bottom__text">
-                      <img src="/Rectangle.svg" alt="" />
-                      NEUTRAL EXPRESSION
-                    </p>
-                    <p className="bottom__text">
-                      <img src="/Rectangle.svg" alt="" />
-                      FRONTAL POSE
-                    </p>
-                    <p className="bottom__text">
-                      <img src="/Rectangle.svg" alt="" />
-                      ADEQUATE LIGHTING
-                    </p>
-                  </div>
-                </div>
+                <CameraTips/>
               </>
             )}
             <Link href={"/result"} className="arrow no__underline invert">

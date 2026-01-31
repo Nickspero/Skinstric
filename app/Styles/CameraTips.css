@@ -1,0 +1,23 @@
+.bottom__text-box{
+    display: flex;
+    gap: 32px;
+}
+
+.bottom__texts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    gap: 24px;
+}
+
+.bottom__text-main{
+    text-align: center;
+}
+
+.bottom__text{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

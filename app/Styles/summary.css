@@ -86,3 +86,7 @@
 .active:hover{
     background-color: #1a1b1c;
 }
+
+@media (max-width:900px) {
+    
+}
