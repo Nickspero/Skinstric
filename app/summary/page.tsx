@@ -63,7 +63,6 @@ const summaryPage = () => {
   const [percent, setPercent] = useState(raceMax.val);
   const [activeStat, setActiveStat] = useState(raceMax.key);
 
-  console.log(ageMax.val);
 
   return (
     <div className="container">
@@ -78,7 +77,7 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "race" && "active"}`}
               onClick={() => {
-                (setActive("race"), setCatStates(raceMax.key, raceMax.val));
+                (setActive("race"), setRaceTitle(capitalize(raceMax.key)), setCatStates(raceMax.key, raceMax.val));
               }}
             >
               <p>{raceTitle}</p>
@@ -87,7 +86,7 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "age" && "active"}`}
               onClick={() => {
-                (setActive("age"), setCatStates(ageMax.key, ageMax.val));
+                (setActive("age"), setAgeTitle(ageMax.key), setCatStates(ageMax.key, ageMax.val));
               }}
             >
               <p>{ageTitle}</p>
@@ -96,7 +95,7 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "sex" && "active"}`}
               onClick={() => {
-                (setActive("sex"), setCatStates(sexMax.key, sexMax.val));
+                (setActive("sex"), setSexTitle(capitalize(sexMax.key)), setCatStates(sexMax.key, sexMax.val));
               }}
             >
               <p>{sexTitle}</p>
@@ -203,7 +202,7 @@ const summaryPage = () => {
         </div>
       </div>
 
-      <div className="arrow__wrapper">
+      <div className="arrow__wrapper arrow__media">
         <Link href={"/select"} className="no__underline">
           <div className="arrow">
             <img src="/left-arrow.svg" />

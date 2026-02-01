@@ -216,12 +216,12 @@
   .sphere__text {
     text-align: center;
     width: max-content;
-    top: 120px;
+    top: 115px;
     right: 0;
   }
   .sphere__text--2{
     align-items: center;
-    bottom: -55px;
+    bottom: -30px;
     width: max-content;
     left: 12px;
   }

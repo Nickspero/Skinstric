@@ -19,9 +19,9 @@ export default function Home() {
             onMouseLeave={() => setLeftHover(false)}
           >
             <div className="arrow">
-            <img src="/left-arrow.svg" />
-            <p>DISCOVER A.I.</p>
-          </div>
+              <img src="/left-arrow.svg" />
+              <p>DISCOVER A.I.</p>
+            </div>
           </div>
         </div>
 
@@ -33,7 +33,6 @@ export default function Home() {
           <p>Sophisticated</p>
           <span>skincare</span>
         </div>
-
         <div className={`right__container ${leftHover ? "inactive" : ""}`}>
           <div className="dotted dotted__right"></div>
           <Link
@@ -43,15 +42,33 @@ export default function Home() {
             onMouseLeave={() => setRightHover(false)}
           >
             <div className="arrow">
-            <p>TAKE TEST</p>
-            <img src="/right-arrow.svg" />
-          </div>
+              <p>TAKE TEST</p>
+              <img src="/right-arrow.svg" />
+            </div>
           </Link>
         </div>
         <p className="home__description">
           SKINSTRIC DEVELOPED AN A.I. THAT CREATES HIGHLY PERSONALIZED ROUTINE
           TAILORED TO WHAT YOUR SKIN NEEDS.
         </p>
+      </div>
+      <div className="home__content--media">
+        <div className="title__media">
+          <p>Sophisticated</p>
+          <span>skincare</span>
+        </div>
+          <p className="home__description--media">
+            Skinstric developed an A.I. that creates a highly-personalized
+            routine tailored to what your skin needs.
+          </p>
+        <Link href={"/testing"} className="no__underline">
+          <div className="arrow">
+            <p>ENTER EXPERIENCE</p>
+            <img src="/right-arrow.svg" />
+          </div>
+        </Link>
+        <div className="dotted media__box--sm"></div>
+        <div className="dotted media__box--md"></div>
       </div>
     </div>
   );

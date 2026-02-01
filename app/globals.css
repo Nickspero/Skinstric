@@ -123,3 +123,19 @@ body {
     100% { transform: rotate(360deg);}
     
 }
+
+@media (max-width:768px) {
+  .box__sm,
+.box__md,
+.box__lg {
+  opacity: .3;
+}
+.arrow{
+    font-size: 12px;
+    font-weight: 600;
+
+    img{
+      width: 32px;
+    }
+  }
+}

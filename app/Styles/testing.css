@@ -78,18 +78,34 @@ form {
   height: 550px;
 }
 
-@media (max-width: 576px) {
-  .box__sm {
+
+@media (max-width:768px) {
+   .box__sm {
+    width: 325px;
+    height: 325px;
+  }
+  .box__md {
     width: 350px;
     height: 350px;
+  }
+  .box__lg {
+    width: 375px;
+    height: 375px;
+  }
+}
+
+@media (max-width: 576px) {
+  .box__sm {
+    width: 300px;
+    height: 300px;
   }
   .box__md {
     width: 325px;
     height: 325px;
   }
   .box__lg {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
   }
   .input__tag {
     font-size: 12px;
@@ -101,20 +117,5 @@ form {
   }
   .city {
     width: 350px;
-  }
-}
-
-@media (max-width:768px) {
-   .box__sm {
-    width: 400px;
-    height: 400px;
-  }
-  .box__md {
-    width: 350px;
-    height: 350px;
-  }
-  .box__lg {
-    width: 325px;
-    height: 325px;
   }
 }

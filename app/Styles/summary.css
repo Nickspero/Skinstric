@@ -88,5 +88,33 @@
 }
 
 @media (max-width:900px) {
-    
+    .summary__header{
+    font-size: 32px;
+    font-weight: 400;
+}
+.disclaimer{
+    display: none;
+}
+.summary__main{
+    margin: 24px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+.row{
+    position: relative;
+}
+.category{
+    width: 100%;
+}
+.right-side{
+    width: 100%;
+    margin-bottom: 120px;
+}
+.arrow__media{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+}
 }
