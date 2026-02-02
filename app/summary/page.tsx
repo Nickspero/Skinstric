@@ -3,22 +3,17 @@ import Link from "next/link";
 import Header from "../Components/Header";
 import "../Styles/summary.css";
 import { useResultStore } from "../store/useResultsStore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PercentRing from "../Components/PercentRing";
 
 const summaryPage = () => {
-  const [result, setResult] = useState<any>(null);
+  const result = useResultStore((state: any) => state.result);
 
-  useEffect(() => {
-    const storeResult = useResultStore((state: any) => state.result);
-    setResult(storeResult);
-  }, []);
+  if (!result || !result.data) return null
 
-  if (!result.data) return null
-
-  const ages: Record<string, number> = result.data.age;
-  const sex: Record<string, number> = result.data.gender;
-  const race: Record<string, number> = result.data.race;
+  const ages: Record<string, number> = result?.data?.age ?? {};
+  const sex: Record<string, number> = result?.data?.gender ?? {};
+  const race: Record<string, number> = result?.data?.race ?? {};
 
   const capitalize = (word: string) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -64,12 +59,12 @@ const summaryPage = () => {
   };
 
   const [active, setActive] = useState("race");
-  const [activeTitle, setActiveTitle] = useState(raceMax.key);
-  const [raceTitle, setRaceTitle] = useState(capitalize(raceMax.key));
+  const [activeTitle, setActiveTitle] = useState(raceMax.key || "");
+  const [raceTitle, setRaceTitle] = useState(capitalize(raceMax.key)|| "");
   const [ageTitle, setAgeTitle] = useState(ageMax.key);
   const [sexTitle, setSexTitle] = useState(capitalize(sexMax.key));
-  const [percent, setPercent] = useState(raceMax.val);
-  const [activeStat, setActiveStat] = useState(raceMax.key);
+  const [percent, setPercent] = useState(raceMax.val || 0);
+  const [activeStat, setActiveStat] = useState(raceMax.key || "");
 
 
   return (
