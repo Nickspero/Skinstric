@@ -3,12 +3,16 @@ import Link from "next/link";
 import Header from "../Components/Header";
 import "../Styles/summary.css";
 import { useResultStore } from "../store/useResultsStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PercentRing from "../Components/PercentRing";
-export const dynamic = 'force-dynamic';
 
 const summaryPage = () => {
-  const result = useResultStore((state: any) => state.result);
+  const [result, setResult] = useState<any>(null);
+
+  useEffect(() => {
+    const storeResult = useResultStore((state: any) => state.result);
+    setResult(storeResult);
+  }, []);
 
   if (!result.data) return null
 
