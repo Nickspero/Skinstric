@@ -5,6 +5,7 @@ import "../Styles/summary.css";
 import { useResultStore } from "../store/useResultsStore";
 import { useState } from "react";
 import PercentRing from "../Components/PercentRing";
+export const dynamic = 'force-dynamic';
 
 const summaryPage = () => {
   const result = useResultStore((state: any) => state.result);
