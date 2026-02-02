@@ -8,6 +8,9 @@ import PercentRing from "../Components/PercentRing";
 
 const summaryPage = () => {
   const result = useResultStore((state: any) => state.result);
+
+  if (!result.data) return null
+
   const ages: Record<string, number> = result.data.age;
   const sex: Record<string, number> = result.data.gender;
   const race: Record<string, number> = result.data.race;
