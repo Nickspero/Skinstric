@@ -8,6 +8,10 @@ import PercentRing from "../Components/PercentRing";
 
 const summaryPage = () => {
   const result = useResultStore((state: any) => state.result);
+  if (!result || !result.data) {
+    return null;
+  }
+
   const ages: Record<string, number> = result.data.age;
   const sex: Record<string, number> = result.data.gender;
   const race: Record<string, number> = result.data.race;
@@ -56,14 +60,12 @@ const summaryPage = () => {
   };
 
   const [active, setActive] = useState("race");
-  const [activeTitle, setActiveTitle] = useState(raceMax.key );
+  const [activeTitle, setActiveTitle] = useState(raceMax.key);
   const [raceTitle, setRaceTitle] = useState(capitalize(raceMax.key));
   const [ageTitle, setAgeTitle] = useState(ageMax.key);
   const [sexTitle, setSexTitle] = useState(capitalize(sexMax.key));
   const [percent, setPercent] = useState(raceMax.val);
   const [activeStat, setActiveStat] = useState(raceMax.key);
-
-    if (!result || !result.data) { return null; }
 
   return (
     <div className="container">
@@ -78,7 +80,9 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "race" && "active"}`}
               onClick={() => {
-                (setActive("race"), setRaceTitle(capitalize(raceMax.key)), setCatStates(raceMax.key, raceMax.val));
+                (setActive("race"),
+                  setRaceTitle(capitalize(raceMax.key)),
+                  setCatStates(raceMax.key, raceMax.val));
               }}
             >
               <p>{raceTitle}</p>
@@ -87,7 +91,9 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "age" && "active"}`}
               onClick={() => {
-                (setActive("age"), setAgeTitle(ageMax.key), setCatStates(ageMax.key, ageMax.val));
+                (setActive("age"),
+                  setAgeTitle(ageMax.key),
+                  setCatStates(ageMax.key, ageMax.val));
               }}
             >
               <p>{ageTitle}</p>
@@ -96,7 +102,9 @@ const summaryPage = () => {
             <div
               className={`summary category ${active === "sex" && "active"}`}
               onClick={() => {
-                (setActive("sex"), setSexTitle(capitalize(sexMax.key)), setCatStates(sexMax.key, sexMax.val));
+                (setActive("sex"),
+                  setSexTitle(capitalize(sexMax.key)),
+                  setCatStates(sexMax.key, sexMax.val));
               }}
             >
               <p>{sexTitle}</p>
@@ -119,69 +127,43 @@ const summaryPage = () => {
             </div>
             <div className="percentages">
               {active === "race" &&
-                Object.entries(race).sort(([, a], [, b]) => b - a).map(([key, value]) => {
-                  return (
-                    <div
-                      className={`stat ${activeStat === key && "active"}`}
-                      key={key}
-                      onClick={() => {
-                        setStatStates(key, value);
-                        setRaceTitle(capitalize(key));
-                      }}
-                    >
-                      <figure className="percent__wrapper">
-                        <img
-                          src={
-                            activeStat === key
-                              ? "/radio-button.svg"
-                              : "/Rectangle.svg"
-                          }
-                          alt=""
-                        />
-                        <p>{capitalize(key)}</p>
-                      </figure>
-                      <p>{percentRound(value)}%</p>
-                    </div>
-                  );
-                })}
-
-                {active === "age" &&
-                Object.entries(ages)
+                Object.entries(race)
+                  .sort(([, a], [, b]) => b - a)
                   .map(([key, value]) => {
-                  return (
-                    <div
-                    className={`stat ${activeStat === key && "active"}`}
-                    key={key}
-                    onClick={() => {
-                      setStatStates(key, value);
-                      setAgeTitle(key);
-                    }}
-                    >
-                    <figure className="percent__wrapper">
-                      <img
-                      src={
-                        activeStat === key
-                        ? "/radio-button.svg"
-                        : "/Rectangle.svg"
-                      }
-                      alt=""
-                      />
-                      <p>{capitalize(key)}</p>
-                    </figure>
-                    <p>{percentRound(value)}%</p>
-                    </div>
-                  );
+                    return (
+                      <div
+                        className={`stat ${activeStat === key && "active"}`}
+                        key={key}
+                        onClick={() => {
+                          setStatStates(key, value);
+                          setRaceTitle(capitalize(key));
+                        }}
+                      >
+                        <figure className="percent__wrapper">
+                          <img
+                            src={
+                              activeStat === key
+                                ? "/radio-button.svg"
+                                : "/Rectangle.svg"
+                            }
+                            alt=""
+                          />
+                          <p>{capitalize(key)}</p>
+                        </figure>
+                        <p>{percentRound(value)}%</p>
+                      </div>
+                    );
                   })}
 
-              {active === "sex" &&
-                Object.entries(sex).sort(([, a], [, b]) => b - a).map(([key, value]) => {
+              {active === "age" &&
+                Object.entries(ages).map(([key, value]) => {
                   return (
                     <div
                       className={`stat ${activeStat === key && "active"}`}
                       key={key}
                       onClick={() => {
                         setStatStates(key, value);
-                        setSexTitle(capitalize(key));
+                        setAgeTitle(key);
                       }}
                     >
                       <figure className="percent__wrapper">
@@ -199,6 +181,35 @@ const summaryPage = () => {
                     </div>
                   );
                 })}
+
+              {active === "sex" &&
+                Object.entries(sex)
+                  .sort(([, a], [, b]) => b - a)
+                  .map(([key, value]) => {
+                    return (
+                      <div
+                        className={`stat ${activeStat === key && "active"}`}
+                        key={key}
+                        onClick={() => {
+                          setStatStates(key, value);
+                          setSexTitle(capitalize(key));
+                        }}
+                      >
+                        <figure className="percent__wrapper">
+                          <img
+                            src={
+                              activeStat === key
+                                ? "/radio-button.svg"
+                                : "/Rectangle.svg"
+                            }
+                            alt=""
+                          />
+                          <p>{capitalize(key)}</p>
+                        </figure>
+                        <p>{percentRound(value)}%</p>
+                      </div>
+                    );
+                  })}
             </div>
           </div>
         </div>
