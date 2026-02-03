@@ -118,3 +118,9 @@
     background-color: white;
 }
 }
+
+@media (max-width:568px) {
+    .middle__header{
+        margin-bottom: 24px;
+    }
+}

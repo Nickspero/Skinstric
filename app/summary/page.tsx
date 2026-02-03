@@ -9,7 +9,7 @@ import PercentRing from "../Components/PercentRing";
 const summaryPage = () => {
   const result = useResultStore((state: any) => state.result);
 
-  if (!result || !result.data) return null
+  if (!result || !result.data) { return null; }
 
   const ages: Record<string, number> = result?.data?.age ?? {};
   const sex: Record<string, number> = result?.data?.gender ?? {};
@@ -121,7 +121,7 @@ const summaryPage = () => {
             </div>
             <div className="percentages">
               {active === "race" &&
-                Object.entries(race).map(([key, value]) => {
+                Object.entries(race).sort(([, a], [, b]) => b - a).map(([key, value]) => {
                   return (
                     <div
                       className={`stat ${activeStat === key && "active"}`}
@@ -147,35 +147,36 @@ const summaryPage = () => {
                   );
                 })}
 
-              {active === "age" &&
-                Object.entries(ages).map(([key, value]) => {
+                {active === "age" &&
+                Object.entries(ages)
+                  .map(([key, value]) => {
                   return (
                     <div
-                      className={`stat ${activeStat === key && "active"}`}
-                      key={key}
-                      onClick={() => {
-                        setStatStates(key, value);
-                        setAgeTitle(key);
-                      }}
+                    className={`stat ${activeStat === key && "active"}`}
+                    key={key}
+                    onClick={() => {
+                      setStatStates(key, value);
+                      setAgeTitle(key);
+                    }}
                     >
-                      <figure className="percent__wrapper">
-                        <img
-                          src={
-                            activeStat === key
-                              ? "/radio-button.svg"
-                              : "/Rectangle.svg"
-                          }
-                          alt=""
-                        />
-                        <p>{capitalize(key)}</p>
-                      </figure>
-                      <p>{percentRound(value)}%</p>
+                    <figure className="percent__wrapper">
+                      <img
+                      src={
+                        activeStat === key
+                        ? "/radio-button.svg"
+                        : "/Rectangle.svg"
+                      }
+                      alt=""
+                      />
+                      <p>{capitalize(key)}</p>
+                    </figure>
+                    <p>{percentRound(value)}%</p>
                     </div>
                   );
-                })}
+                  })}
 
               {active === "sex" &&
-                Object.entries(sex).map(([key, value]) => {
+                Object.entries(sex).sort(([, a], [, b]) => b - a).map(([key, value]) => {
                   return (
                     <div
                       className={`stat ${activeStat === key && "active"}`}

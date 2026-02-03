@@ -46,6 +46,7 @@ video {
 .photo__captured {
   width: 100%;
   height: 92%;
+  min-width: 900px;
 }
 
 .take-picture {

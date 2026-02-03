@@ -8,7 +8,12 @@ const PercentRing = ({ percentage }: { percentage: number }) => {
   const OFFSET = CIRC * (1 - percentage / 100);
 
   return (
-    <svg width={SIZE} height={SIZE}>
+    <svg 
+      width={SIZE} 
+      height={SIZE}
+      viewBox={`0 0 ${SIZE} ${SIZE}`}
+      style={{ maxWidth: "100%", height: "auto" }}
+    >
       <circle
         cx={CENTER}
         cy={CENTER}
@@ -35,7 +40,6 @@ const PercentRing = ({ percentage }: { percentage: number }) => {
         }}
       />
 
-      
       <circle
         cx={CENTER}
         cy={CENTER}
@@ -43,7 +47,6 @@ const PercentRing = ({ percentage }: { percentage: number }) => {
         fill="#F3F3F4"
       />
 
-      
       <text
         x="50%"
         y="50%"
@@ -58,7 +61,6 @@ const PercentRing = ({ percentage }: { percentage: number }) => {
     </svg>
   );
 };
-
 
 
 
