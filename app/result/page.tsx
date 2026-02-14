@@ -40,6 +40,8 @@ const resultPage = () => {
     );
     const data = await res.json();
 
+    console.log(data)
+
      if (data.success) {
       setResult(data);
       router.push("/select");
